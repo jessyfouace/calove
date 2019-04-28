@@ -22,6 +22,8 @@ $title = "Calove - Accueil | Site de rencontre du Calaisis";
 $description = 'Calove, Site de rencontre du Calaisis, entièrement gratuit, connection requise afin de voir les profil ainsi que les images.';
 $pageNumber = 1;
 
+require "../controllers/cookies.php";
+
 $allUsers = $userManager->getUser();
 
 require "../controllers/addFav.php";

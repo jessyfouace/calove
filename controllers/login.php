@@ -25,6 +25,8 @@ $userManager = new UserManager($db);
 $favoritesManager = new FavoritesManager($db);
 $moreInformationManager = new MoreInformationManager($db);
 
+require "../controllers/cookies.php";
+
 require('../controllers/connexion.php');
 
 require('../controllers/cookies.php');

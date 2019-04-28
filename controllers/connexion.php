@@ -38,14 +38,18 @@ if (!empty($_POST['mailCo'])) {
                     $_SESSION['image'] = false;
                 }
                 if (!empty($_POST['rememberme'])) {
-                    if (isset($_COOKIE['acceptation'])) {
-                        setCookie('mail', $mail, (time() + 365 * 24 * 3600));
-                        setCookie('password', $password, (time() + 365 * 24 * 3600));
-                        setCookie('role', $getUser->getRole(), (time() + 365 * 24 * 3600));
+                    // if (isset($_COOKIE['acceptation'])) {
+                        setCookie('id', $getUser->getIdUser(), (time() + 365 * 24 * 3600));
                         setCookie('firstname', $getUser->getFirstname(), (time() + 365 * 24 * 3600));
                         setCookie('lastname', $getUser->getLastname(), (time() + 365 * 24 * 3600));
-                        setCookie('idUser', $getUser->getIdUser(), (time() + 365 * 24 * 3600));
-                    }
+                        setCookie('mail', $mail, (time() + 365 * 24 * 3600));
+                        setCookie('password', $password, (time() + 365 * 24 * 3600));
+                        setCookie('pseudo', $getUser->getPseudo(), (time() + 365 * 24 * 3600));
+                        setCookie('sexe', $getUser->getSexe(), (time() + 365 * 24 * 3600));
+                        setCookie('searchSexe', $getUser->getSearchSexe(), (time() + 365 * 24 * 3600));
+                        setCookie('role', $getUser->getRole(), (time() + 365 * 24 * 3600));
+                        setCookie('image', $_SESSION['image'], (time() + 365 * 24 * 3600));
+                    // }
                 }
             }
         } else {

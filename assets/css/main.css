@@ -265,6 +265,20 @@ a:hover{
     filter: blur(3px);
 }
 
+.page-link{
+    color: #EC87A0;
+}
+
+.page-link:hover{
+    color: white;
+    background-color: #EC87A0;
+    border-color: #EC87A0;
+}
+
+.page-item.active .page-link {
+    background-color: #EC87A0;
+    border-color: #EC87A0;
+}
 .cardTriangle{
     margin-bottom: -1px;
     height: 50px;

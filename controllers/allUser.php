@@ -22,6 +22,8 @@ $title = "Calove - Tous les membres | Site de rencontre du Calaisis";
 $description = 'Calove, Site de rencontre du Calaisis, entièrement gratuit, connection requise afin de voir les profil ainsi que les images.';
 $pageNumber = 2;
 
+require "../controllers/cookies.php";
+
 require "../controllers/addFav.php";
 
 if (!isset($_GET['page'])) {
@@ -37,7 +39,7 @@ if (!isset($_SESSION['searchSexe']) or $_SESSION['searchSexe'] == 'Homme / Femme
 foreach ($allCount as $count) {
     $allCount = $count;
 }
-$messagePearPage = 18;
+$messagePearPage = 1;
 
 
 $numberOfPage = ceil($allCount / $messagePearPage);

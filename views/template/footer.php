@@ -3,7 +3,7 @@
   </div>
   <script src="http://localhost/Calove/assets/js/vendor/modernizr-2.8.3.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script>window.jQuery || document.write('<script src="http://localhost/Calove/assets/js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
   <script src="http://localhost/Calove/assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="http://localhost/Calove/assets/js/plugins.js"></script>
   <script src="http://localhost/Calove/assets/js/main.js"></script>
