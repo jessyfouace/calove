@@ -57,6 +57,9 @@
                         <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 4) { ?> borderbottomred <?php } ?>" href="http://localhost/Calove/mes-favoris">Mes Favoris</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 8) { ?> borderbottomred <?php } ?>" href="http://localhost/Calove/mes-matchs">Match</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 5) { ?> borderbottomred <?php } ?>" href="#">Contacter</a>
                     </li>
                     <?php } 

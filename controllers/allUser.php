@@ -39,7 +39,7 @@ if (!isset($_SESSION['searchSexe']) or $_SESSION['searchSexe'] == 'Homme / Femme
 foreach ($allCount as $count) {
     $allCount = $count;
 }
-$messagePearPage = 1;
+$messagePearPage = 18;
 
 
 $numberOfPage = ceil($allCount / $messagePearPage);

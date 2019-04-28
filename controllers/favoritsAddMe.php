@@ -11,13 +11,23 @@ function chargerClasse($classname)
         require '../interface/' . ucfirst($classname) . '.php';
     }
 }
-
 session_start();
 spl_autoload_register('chargerClasse');
 $db = Database::BDD();
-
-$messageManager = new MessageManager($db);
+$userManager = new UserManager($db);
 $favoritesManager = new FavoritesManager($db);
 
-$test = $favoritesManager->getPersonAddMe('1');
-print_r($test);
+$title = "Calove - Match | Site de rencontre du Calaisis";
+$description = 'Calove, Site de rencontre du Calaisis, entièrement gratuit, connection requise afin de voir les profil ainsi que les images.';
+$pageNumber = 8;
+
+require "../controllers/cookies.php";
+
+if (!isset($_SESSION['id'])) {
+    header('location: http://localhost/Calove/accueil');
+}
+
+
+$allUsers = $favoritesManager->getPersonAddMe($_SESSION['id']);
+
+require "../views/favoritsAddMeVue.php";

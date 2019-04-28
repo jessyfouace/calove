@@ -120,6 +120,32 @@ class UserManager
         return $idUser;
     }
 
+    /**
+     * get User
+     *
+     * @return self
+     */
+    public function getAllUserById($id)
+    {
+        $id = (int)$id;
+        $query = $this->getBdd()->prepare('SELECT * FROM user LEFT JOIN image ON user.idUser = image.userId WHERE user.idUser = :idUser');
+        $query->bindValue('idUser', $id, PDO::PARAM_INT);
+        $query->execute();
+        $users = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $arrayOfImage = [];
+        $arrayOfUser = [];
+        $arrayOfAll = [];
+        foreach ($users as $user) {
+            $arrayOfUser[] = new User($user);
+            $arrayOfImage[] = new Image($user);
+        }
+
+        $arrayOfAll[] = $arrayOfUser;
+        $arrayOfAll[] = $arrayOfImage;
+        return $arrayOfAll;            
+    }
+
     public function getUserByMail(string $mail)
     {
         $query = $this->getBdd()->prepare('SELECT * FROM user WHERE emailUser = :mail');

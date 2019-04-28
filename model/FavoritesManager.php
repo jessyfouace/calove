@@ -80,6 +80,34 @@ class FavoritesManager
     }
 
     /**
+     * get personAddMe
+     *
+     * @return self
+     */
+    public function getPersonAddMe($id)
+    {
+        $id = '%'.$id.',%';
+        $query = $this->getBdd()->prepare('SELECT * FROM favorites RIGHT JOIN user ON user.idUser = favorites.IdUserFavorites LEFT JOIN image ON user.idUser = image.userId WHERE idFavoritesOther LIKE :id');
+        $query->bindValue(':id', $id, PDO::PARAM_STR);
+        $query->execute();
+        $allAdd = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $arrayOfUser = [];
+        $arrayOfFavorites = [];
+        $arrayOfImage = [];
+        $arrayOfAll = [];
+        foreach ($allAdd as $oneAdd) {
+            $arrayOfUser[] = new User($oneAdd);
+            $arrayOfImage[] = new Image($oneAdd);
+            $arrayOfFavorites[] = new Favorites($oneAdd);
+        }
+        $arrayOfAll[] = $arrayOfUser;
+        $arrayOfAll[] = $arrayOfImage;
+        $arrayOfAll[] = $arrayOfFavorites;
+        return $arrayOfAll;
+    }
+
+    /**
     * delete TABLENAMEById
     *
     * @param [int] $id
