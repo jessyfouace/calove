@@ -11,6 +11,7 @@ class User
     protected $forgetPassword;
     protected $sexe;
     protected $searchSexe;
+    protected $role;
 
     public function __construct(array $array)
     {
@@ -159,7 +160,7 @@ class User
      */
     public function getFirstname()
     {
-        return $this->firstname;
+        return $this->firstnameUser;
     }
 
     /**
@@ -169,7 +170,7 @@ class User
      */
     public function getLastname()
     {
-        return $this->lastname;
+        return $this->lastnameUser;
     }
 
     /**
@@ -189,7 +190,7 @@ class User
      */
     public function getMail()
     {
-        return $this->mail;
+        return $this->emailUser;
     }
 
     /**
@@ -250,6 +251,27 @@ class User
     public function setSearchSexe($searchSexe)
     {
         $this->searchSexe = $searchSexe;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of role
+     */ 
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * set value of role
+     *
+     * @param [string] $role
+     * @return self
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
 
         return $this;
     }

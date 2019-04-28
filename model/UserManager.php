@@ -31,16 +31,25 @@ class UserManager
     }
 
     /**
-    * create TABLENAME
+    * create user
     *
-    * @param [ENTITYNAME] $ENTITY
+    * @param [User] $user
     * @return self
     */
-    public function createTABLENAME(ENTITYNAME $ENTITY)
+    public function createUser(User $user)
     {
-    	$query = $this->getBdd()->prepare('INSERT INTO TABLENAME(TABLECOLUMN) VALUES(:TABLECOLUMN)');
-    	$query->bindValue('TABLECOLUMN', $ENTITY->getTABLECOLUMN(), PDO::PARAM_STR);
-    	$query->execute();
+    	$query = $this->getBdd()->prepare('INSERT INTO user(firstnameUser, lastnameUser, pseudo, emailUser, password, ip, sexe, searchSexe) VALUES(:firstnameUser, :lastnameUser, :pseudo, :emailUser, :password, :ip, :sexe, :searchSexe)');
+        $query->bindValue('firstnameUser', $user->getFirstname(), PDO::PARAM_STR);
+        $query->bindValue('lastnameUser', $user->getLastname(), PDO::PARAM_STR);
+        $query->bindValue('pseudo', $user->getPseudo(), PDO::PARAM_STR);
+        $query->bindValue('emailUser', $user->getMail(), PDO::PARAM_STR);
+        $query->bindValue('password', $user->getPassword(), PDO::PARAM_STR);
+        $query->bindValue('ip', $user->getIp(), PDO::PARAM_STR);
+        $query->bindValue('sexe', $user->getSexe(), PDO::PARAM_STR);
+        $query->bindValue('searchSexe', $user->getSearchSexe(), PDO::PARAM_STR);
+        $query->execute();
+
+        return $this->getBdd()->lastInsertId();
     }
 
     /**
@@ -111,6 +120,30 @@ class UserManager
         return $idUser;
     }
 
+    public function getUserByMail(string $mail)
+    {
+        $query = $this->getBdd()->prepare('SELECT * FROM user WHERE emailUser = :mail');
+        $query->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $query->execute();
+        $infosUser = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($infosUser as $infoUser) {
+            return new User($infoUser);
+        }
+    }
+
+    public function getUserByPseudo(string $pseudo)
+    {
+        $query = $this->getBdd()->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
+        $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+        $query->execute();
+        $infosUser = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($infosUser as $infoUser) {
+            return new User($infoUser);
+        }
+    }
+
     public function countUsers()
     {
         $query = $this->getBdd()->prepare('SELECT COUNT(*) FROM user');
@@ -168,12 +201,13 @@ class UserManager
      *
      * @return self
      */
-    public function getUsersBySexe($firstEntry, $messagePearPage, $sexe)
+    public function getUsersBySexe($firstEntry, $messagePearPage, $sexe, $searchSexe)
     {
-        $query = $this->getBdd()->prepare('SELECT * FROM user LEFT JOIN image ON user.idUser = image.userId LEFT JOIN moreInformation ON user.idUser = moreInformation.userIdInformation WHERE sexe = :searchSexe ORDER BY user.idUser DESC LIMIT :firstEntry, :messagePearPage');
+        $query = $this->getBdd()->prepare('SELECT * FROM user LEFT JOIN image ON user.idUser = image.userId LEFT JOIN moreInformation ON user.idUser = moreInformation.userIdInformation WHERE sexe = :searchSexe AND searchSexe = :sexe ORDER BY user.idUser DESC LIMIT :firstEntry, :messagePearPage');
         $query->bindValue('firstEntry', $firstEntry, PDO::PARAM_INT);
         $query->bindValue('messagePearPage', $messagePearPage, PDO::PARAM_INT);
         $query->bindValue('searchSexe', $sexe, PDO::PARAM_STR);
+        $query->bindValue('sexe', $searchSexe, PDO::PARAM_STR);
         $query->execute();
         $allUser = $query->fetchAll(PDO::FETCH_ASSOC);
 

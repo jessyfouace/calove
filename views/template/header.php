@@ -49,18 +49,18 @@
                     <li class="nav-item">
                         <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 2) { ?> borderbottomred <?php } ?>" href="http://localhost/Calove/caloviens/1">Calovien(e)s</a>
                     </li>
+                    <?php if (isset($_SESSION['id'])) { ?>
                     <li class="nav-item">
                         <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 3) { ?> borderbottomred <?php } ?>" href="#">Messages</a>
                     </li>
-                    <?php if (isset($_SESSION['id'])) { ?>
                     <li class="nav-item">
                         <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 4) { ?> borderbottomred <?php } ?>" href="http://localhost/Calove/mes-favoris">Mes Favoris</a>
                     </li>
-                    <?php } ?>
                     <li class="nav-item">
                         <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 5) { ?> borderbottomred <?php } ?>" href="#">Contacter</a>
                     </li>
-                    <?php if (isset($_SESSION['role']) and $_SESSION['role'] == 'is_admin') { ?>
+                    <?php } 
+                    if (isset($_SESSION['role']) and $_SESSION['role'] == 'is_admin') { ?>
                     <li class="nav-item">
                         <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 6) { ?> borderbottomred <?php } ?>" href="#">Administrateur</a>
                     </li>
@@ -74,13 +74,13 @@
                     <a class="p-0 pb-2 pt-2 pr-lg-2 hvr-underline-from-center colorwhite" href="">Profil</a>
                 </li>
                 <li class="nav-item p-0">
-                    <a class="p-0 pb-2 pt-2 pl-lg-2 hvr-underline-from-center colorwhite" href="">Déconnection</a>
+                    <a class="p-0 pb-2 pt-2 pl-lg-2 hvr-underline-from-center colorwhite" href="http://localhost/Calove/deconnection">Déconnection</a>
                 </li>
                 <?php 
             }
             if (!isset($_SESSION['mail'])) { ?>
                 <li class="nav-item p-0">
-                    <a class="p-0 pb-2 pt-2 pl-lg-2 hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 7) { ?> borderbottomred <?php } ?>" href="">Connexion</a>
+                    <a class="p-0 pb-2 pt-2 pl-lg-2 hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 7) { ?> borderbottomred <?php } ?>" href="http://localhost/Calove/connection">Connexion</a>
                 </li>
                 <?php 
             } ?>

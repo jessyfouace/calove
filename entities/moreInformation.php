@@ -1,5 +1,5 @@
 <?php
-class moreInformation
+class MoreInformation
 {
     protected $idInformation;
     protected $description;

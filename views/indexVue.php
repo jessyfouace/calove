@@ -48,12 +48,16 @@
                             <div class="name col-12 text-center">
                                 <?php
                                 if (isset($_SESSION['id'])) {
-                                    foreach ($explodeFavHeart as $infoHeart) {
-                                        if ($infoHeart == $user->getIdUser()) {
-                                            $fav = true;
-                                            break;
-                                        } else {
-                                            $fav = false;
+                                    if (isset($explodeFavHeart)) {
+                                        if ($explodeFavHeart) {
+                                            foreach ($explodeFavHeart as $infoHeart) {
+                                                if ($infoHeart == $user->getIdUser()) {
+                                                    $fav = true;
+                                                    break;
+                                                } else {
+                                                    $fav = false;
+                                                }
+                                            }
                                         }
                                     }
                                 } ?>

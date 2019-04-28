@@ -1,5 +1,5 @@
 <?php
-class FavoritesManager
+class MoreInformationManager
 {
     protected $_bdd;
 
@@ -31,38 +31,37 @@ class FavoritesManager
     }
 
     /**
-    * create Favorites
+    * create more information
     *
-    * @param [int] $favorites
+    * @param [int] $id
     * @return self
     */
-    public function createFavorites($id)
+    public function createMoreInformation($id)
     {
         $id = (int) $id;
-    	$query = $this->getBdd()->prepare('INSERT INTO favorites(idUserFavorites) VALUES(:idUserFavorites)');
-        $query->bindValue('idUserFavorites', $id, PDO::PARAM_INT);
+        $query = $this->getBdd()->prepare('INSERT INTO moreinformation(userIdInformation, description) VALUES(:id, :description)');
+        $query->bindValue('description', 'Aucune description.', PDO::PARAM_STR); 
+    	$query->bindValue('id', $id, PDO::PARAM_INT);
     	$query->execute();
     }
 
     /**
-    * get Favorites
+    * get TABLENAME
     *
     * @return self
     */
-    public function getFavorites($id)
+    public function getTABLENAME()
     {
-        $id = (int) $id;
-        $query = $this->getBdd()->prepare('SELECT * FROM favorites WHERE idUserFavorites = :idUserFavorites');
-        $query->bindValue('idUserFavorites', $id, PDO::PARAM_INT);
+    	$query = $this->getBdd()->prepare('SELECT * FROM TABLENAME');
     	$query->execute();
-    	$allFavorits = $query->fetchAll(PDO::FETCH_ASSOC);
+    	$allTABLENAME = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        $allFavoritsTable = [];
-    	foreach ($allFavorits as $favoris)
+    	$arrayOfTABLENAME = [];
+    	foreach ($allTABLENAME as $TABLENAME)
     	{
-            $allFavoritsTable[] = new Favorites($favoris);
-        }
-        return $allFavoritsTable;
+    		$arrayOfTABLENAME[] = new Entity($TABLENAME);
+    	}
+    	return $arrayOfTABLENAME;
     }
 
     /**
@@ -94,16 +93,16 @@ class FavoritesManager
     }
 
     /**
-    * update favorites
+    * update TABLENAME
     *
-    * @param [favorites] $favorites
+    * @param [ENTITYNAME] $ENTITY
     * @return self
     */
-    public function updateFavorites(Favorites $favorites)
+    public function updateTABLENAME(ENTITYNAME $ENTITY)
     {
-    	$query = $this->getBdd()->prepare('UPDATE favorites SET idFavoritesOther = :idFavoritesOther WHERE idUserFavorites = :idUserFavorites');
-    	$query->bindValue('idFavoritesOther', $favorites->getIdFavoritesOther(), PDO::PARAM_STR);
-    	$query->bindValue('idUserFavorites', $favorites->getIdUserFavorites(), PDO::PARAM_INT);
-        $query->execute();
+    	$query = $this->getBdd()->prepare('UPDATE TABLENAME SET TABLECOLUMN = :TABLECOLUMN WHERE id = :id');
+    	$query->bindValue('TABLECOLUMN', $ENTITY->getTABLECOLUMN(), PDO::PARAM_STR);
+    	$query->bindValue('id', $ENTITY->getId(), PDO::PARAM_INT);
+    	$query->execute();
     }
 }

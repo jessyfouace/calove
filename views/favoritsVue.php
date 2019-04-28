@@ -36,12 +36,19 @@
                                 <div class="nameAndTriangle">
                                     <div class="cardTriangle"></div>
                                     <div class="name col-12 text-center">
-                                        <?php foreach ($explodeFavHeart as $infoHeart) {
-                                            if ($infoHeart == $user->getIdUser()) {
-                                                $fav = true;
-                                                break;
-                                            } else {
-                                                $fav = false;
+                                        <?php
+                                        if (isset($_SESSION['id'])) {
+                                            if (isset($explodeFavHeart)) {
+                                                if ($explodeFavHeart) {
+                                                    foreach ($explodeFavHeart as $infoHeart) {
+                                                        if ($infoHeart == $user->getIdUser()) {
+                                                            $fav = true;
+                                                            break;
+                                                        } else {
+                                                            $fav = false;
+                                                        }
+                                                    }
+                                                }
                                             }
                                         } ?>
                                         <p class="p-2 pb-3 text-center">
