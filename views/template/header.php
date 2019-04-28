@@ -60,7 +60,7 @@
                         <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 8) { ?> borderbottomred <?php } ?>" href="http://localhost/Calove/mes-matchs">Match</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 5) { ?> borderbottomred <?php } ?>" href="#">Contacter</a>
+                        <a class="nav-link hvr-underline-from-center colorwhite <?php if(isset($pageNumber) and $pageNumber == 5) { ?> borderbottomred <?php } ?>" href="http://localhost/Calove/nous-contactez">Contacter</a>
                     </li>
                     <?php } 
                     if (isset($_SESSION['role']) and $_SESSION['role'] == 'is_admin') { ?>
