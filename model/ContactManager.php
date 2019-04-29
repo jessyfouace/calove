@@ -77,11 +77,11 @@ class ContactManager
         $query->execute();
         $allContact = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        $arrayOfContact = [];
+        $arrayOfAll = [];
         foreach ($allContact as $contact) {
-                $arrayOfContact[] = new Contact($contact);
-            }
-        return $arrayOfContact;
+                $arrayOfAll[] = new Contact($contact);
+        }
+        return $arrayOfAll;
     }
 
     /**
@@ -93,16 +93,21 @@ class ContactManager
     public function getContactByIdMessageContact($id)
     {
         $id = (int)$id;
-        $query = $this->getBdd()->prepare('SELECT * FROM contact WHERE idMessageContact = :id');
+        $query = $this->getBdd()->prepare('SELECT * FROM contact LEFT JOIN user ON contact.idAdmin = user.idUser WHERE idMessageContact = :id');
         $query->bindValue('id', $id, PDO::PARAM_INT);
         $query->execute();
         $allContact = $query->fetchAll(PDO::FETCH_ASSOC);
 
+        $arrayOfAll = [];
+        $arrayOfUser = [];
         $arrayOfContact = [];
         foreach ($allContact as $contact) {
+            $arrayOfUser[] = new User($contact);
             $arrayOfContact[] = new Contact($contact);
         }
-        return $arrayOfContact;
+        $arrayOfAll[] = $arrayOfUser;
+        $arrayOfAll[] = $arrayOfContact;
+        return $arrayOfAll;
     }
 
     /**

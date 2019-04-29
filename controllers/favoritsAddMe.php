@@ -27,6 +27,7 @@ if (!isset($_SESSION['id'])) {
     header('location: http://localhost/Calove/accueil');
 }
 
+require "../controllers/addFav.php";
 
 $allUsers = $favoritesManager->getPersonAddMe($_SESSION['id']);
 

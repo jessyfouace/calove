@@ -17,6 +17,7 @@ $db = Database::BDD();
 
 $userManager = new UserManager($db);
 $contactManager = new ContactManager($db);
+$responseManager = new ResponseContactManager($db);
 
 $title = "Calove - Contact | Site de rencontre du Calaisis";
 $description = 'Calove, Site de rencontre du Calaisis, entièrement gratuit, connection requise afin de voir les profil ainsi que les images.';
@@ -29,9 +30,23 @@ if (!isset($_SESSION['id'])) {
 }
 
 $myContact = $contactManager->getContactByIdMessageContact($_GET['id']);
-foreach ($myContact as $contact) {
+foreach ($myContact[1] as $contact) {
     if ($contact->getIdSenderContact() != $_SESSION['id']) {
         header('location: http://localhost/Calove/accueil');
     }
 }
+$responseContact = $responseManager->getResponse($_GET['id']);
+
+if (isset($_POST['message'])) {
+    $message = nl2br($_POST['message']);
+    $message = htmlspecialchars($_POST['message']);
+    $response = new ResponseContact([
+        'idMessageResponse' => $_GET['id'],
+        'messageResponse' => $message,
+        'idUserResponse' => $_SESSION['id']
+    ]);
+    $responseManager->createResponse($response);
+    header('location: ' . $_SERVER['REQUEST_URI']);
+}
+
 require "../views/contactAllVue.php";

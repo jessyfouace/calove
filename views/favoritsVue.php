@@ -52,7 +52,7 @@
                                             }
                                         } ?>
                                         <p class="p-2 pb-3 text-center">
-                                            <form class="m-0 p-0 <?php if (!isset($_SESSION['mail'])) { ?> d-none <?php } ?> displaynone" action="" method="post"><input type="hidden" name="nameFav" value="<?= $user->getPseudo() ?>"><input class="mt-0 pt-0" type="hidden" name="favId" value="<?= $user->getIdUser() ?>"><button class="bgnobutton mt-0 pt-0" type="submit"><span class="fav"><i onmouseover='changeIcon(this)' onmouseout='changeIcon(this)' id="<?= $user->getIdUser() ?>" class="coloryellow <?php if ($fav == false) { ?> far <?php } else { ?> fas <?php } ?> fa-star fa-2x"></i></span></button></form><span class="lead font-weight-bold"><?= ucfirst($user->getPseudo()); ?></span>
+                                            <form class="m-0 p-0 <?php if (!isset($_SESSION['mail'])) { ?> d-none <?php } ?> displaynone" action="" method="post"><input type="hidden" name="nameFav" value="<?= $user->getPseudo() ?>"><input class="mt-0 pt-0" type="hidden" name="favId" value="<?= $user->getIdUser() ?>"><button class="bgnobutton mt-0 pt-0" type="submit"><span class="fav"><i onmouseover='changeIcon(this)' onmouseout='changeIcon(this)' id="<?= $user->getIdUser() ?>" class="coloryellow <?php if ($fav == false) { ?> far <?php } else { ?> fas <?php } ?> fa-heart fa-2x"></i></span></button></form><span class="lead font-weight-bold"><?= ucfirst($user->getPseudo()); ?></span>
                                         </p>
                                     </div>
                                 </div>
